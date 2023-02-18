@@ -11,26 +11,26 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    UserRepository userRepository;
-    public User createUser(String username, String password){
-        User user=new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        return userRepository.save(user);
+    UserRepository userRepository3;
 
+    public User createUser(String username, String password){
+        User user = new User(username, password);
+        userRepository3.save(user);
+        return user;
     }
 
     public void deleteUser(int userId){
-        User user=userRepository.findById(userId).get();
-        if(user==null) return;
-        userRepository.deleteById(userId);
-
+        userRepository3.deleteById(userId);
     }
 
-    public User updateUser(Integer id, String password){
-        User user=userRepository.findById(id).get();
-        if(user==null) return null;
+    public User updateUser(Integer id, String password) throws Exception {
+        User user;
+        if(!userRepository3.findById(id).isPresent()) {
+            throw new Exception();
+        }
+        user = userRepository3.findById(id).get();
         user.setPassword(password);
-        return userRepository.save(user);
+        userRepository3.save(user);
+        return user;
     }
 }
