@@ -1,12 +1,11 @@
 package com.driver.models;
 
 
-import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+
 public class Image{
 
     @Id
