@@ -19,16 +19,25 @@ public class BlogController {
     @PostMapping("create")
     public ResponseEntity<Void> createBlog(@RequestParam Integer userId ,
                                      @RequestParam String title,
-                                     @RequestParam String content) throws Exception{
+                                     @RequestParam String content){
         // Create a blog and add it under given user
-        blogService.createAndReturnBlog(userId, title, content);
+        try{
+            blogService.createAndReturnBlog(userId, title, content);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{blogId}")
-    public ResponseEntity<Void> deleteBlog(@PathVariable int blogId) throws Exception{
+    public ResponseEntity<Void> deleteBlog(@PathVariable int blogId) {
         // Delete the blog using deleteById
-        blogService.deleteBlog(blogId);
+        try{
+            blogService.deleteBlog(blogId);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
