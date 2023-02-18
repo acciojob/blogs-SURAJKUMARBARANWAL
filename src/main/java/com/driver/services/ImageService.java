@@ -22,7 +22,7 @@ public class ImageService {
         if(blog==null) throw new Exception("Blog not found");
         Image image=new Image();
         image.setDescription(description);
-        image.setDimension(dimensions);
+        image.setDimensions(dimensions);
         image.setBlog(blog);
         blog.getImageList().add(image);
         blogRepository.save(blog);
@@ -40,7 +40,7 @@ public class ImageService {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         Image image=imageRepository.findById(id).get();
         if(image==null) throw new Exception("Image not found");
-        String dimension=image.getDimension();
+        String dimension=image.getDimensions();
         int length=Integer.parseInt(dimension.substring(0,1));
         int breath=Integer.parseInt(dimension.substring(2,3));
         int x= Integer.parseInt(screenDimensions.substring(0,1));
