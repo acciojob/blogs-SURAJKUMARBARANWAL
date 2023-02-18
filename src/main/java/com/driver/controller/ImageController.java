@@ -33,7 +33,7 @@ public class ImageController {
         try {
             count = imageService.countImagesInScreen(id,screenDimensions);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+
         }
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class ImageController {
         try {
             imageService.deleteImage(id);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

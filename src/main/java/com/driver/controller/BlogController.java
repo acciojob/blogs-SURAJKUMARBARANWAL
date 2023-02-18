@@ -26,6 +26,7 @@ public class BlogController {
         catch (Exception ignored){
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
+
     }
 
     @DeleteMapping("/{blogId}")
@@ -34,7 +35,7 @@ public class BlogController {
         try {
             blogService.deleteBlog(blogId);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
