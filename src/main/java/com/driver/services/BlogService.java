@@ -33,7 +33,9 @@ public class BlogService {
         return blog;
     }
 
-    public void deleteBlog(int blogId){
+    public void deleteBlog(int blogId) throws Exception {
+        if(!blogRepository1.findById(blogId).isPresent())
+            throw new Exception();
         //delete blog and corresponding images
         blogRepository1.deleteById(blogId);
     }
