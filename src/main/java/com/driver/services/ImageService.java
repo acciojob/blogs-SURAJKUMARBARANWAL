@@ -16,10 +16,10 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository;
 
-    public Image addImage(Integer blogId, String description, String dimensions) throws Exception {
+    public Image addImage(Integer blogId, String description, String dimensions)  {
         //add an image to the blog
         Blog blog=blogRepository.findById(blogId).get();
-        if(blog==null) throw new Exception("Blog not found");
+        if(blog==null)return null;
         Image image=new Image();
         image.setDescription(description);
         image.setDimensions(dimensions);
@@ -30,16 +30,16 @@ public class ImageService {
 
     }
 
-    public void deleteImage(Integer id) throws Exception {
+    public void deleteImage(Integer id) {
         Image image=imageRepository.findById(id).get();
-        if(image==null) throw new Exception("Image Not found");
+        if(image==null) return;
         imageRepository.deleteById(id);
     }
 
-    public int countImagesInScreen(Integer id, String screenDimensions) throws Exception {
+    public int countImagesInScreen(Integer id, String screenDimensions){
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         Image image=imageRepository.findById(id).get();
-        if(image==null) throw new Exception("Image not found");
+        if(image==null) return 0;
         String dimension=image.getDimensions();
         int length=Integer.parseInt(dimension.substring(0,1));
         int breath=Integer.parseInt(dimension.substring(2,3));

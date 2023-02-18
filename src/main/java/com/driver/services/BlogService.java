@@ -21,10 +21,10 @@ public class BlogService {
     @Autowired
     UserRepository userRepository;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content) throws Exception {
+    public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
         User user=userRepository.findById(userId).get();
-        if(user==null) throw new Exception("User not found");
+        if(user==null) return null;
         Blog blog=new Blog();
         blog.setTitle(title);
         blog.setContent(content);
@@ -34,10 +34,10 @@ public class BlogService {
         return blog;
     }
 
-    public void deleteBlog(int blogId) throws Exception {
+    public void deleteBlog(int blogId){
         //delete blog and corresponding images
         Blog blog=blogRepository.findById(blogId).get();
-        if(blog==null) throw new Exception("Blog not found");
+        if(blog==null) return ;
         blogRepository.deleteById(blogId);
     }
 }
