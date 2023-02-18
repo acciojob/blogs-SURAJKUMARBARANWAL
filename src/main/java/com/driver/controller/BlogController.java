@@ -20,11 +20,10 @@ public class BlogController {
     @PostMapping
     public ResponseEntity createBlog(@RequestParam Integer userId , @RequestParam String title, @RequestParam String content) {
         // Create a blog and add it under given user
-        try{
+
             blogService.createAndReturnBlog(userId,title,content);
-        }
-        catch (Exception ignored){
-        }
+
+
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
@@ -32,11 +31,9 @@ public class BlogController {
     @DeleteMapping("/{blogId}")
     public ResponseEntity<Void> deleteBlog(@PathVariable int blogId) {
         // Delete the blog using deleteById
-        try {
-            blogService.deleteBlog(blogId);
-        } catch (Exception e) {
 
-        }
+            blogService.deleteBlog(blogId);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

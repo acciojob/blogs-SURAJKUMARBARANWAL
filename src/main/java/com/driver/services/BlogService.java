@@ -21,10 +21,9 @@ public class BlogService {
     @Autowired
     UserRepository userRepository;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content)throws Exception {
+    public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
-        if(!userRepository.findById(userId).isPresent())
-            throw new Exception();
+
 
         User user = userRepository.findById(userId).get();
         Blog blog = new Blog(title,content,user);
@@ -33,9 +32,8 @@ public class BlogService {
         return blog;
     }
 
-    public void deleteBlog(int blogId) throws Exception {
-        if(!blogRepository1.findById(blogId).isPresent())
-            throw new Exception();
+    public void deleteBlog(int blogId) {
+
         //delete blog and corresponding images
         blogRepository1.deleteById(blogId);
     }

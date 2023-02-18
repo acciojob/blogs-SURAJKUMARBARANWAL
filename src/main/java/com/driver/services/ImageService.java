@@ -15,10 +15,9 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository2;
 
-    public Image addImage(Integer blogId, String description, String dimensions) throws Exception{
+    public Image addImage(Integer blogId, String description, String dimensions) {
         //add an image to the blog
-        if(!blogRepository2.findById(blogId).isPresent())
-             throw new Exception();
+
 
         Blog blog = blogRepository2.findById(blogId).get();
         Image image = new Image(blog,description,dimensions);
@@ -27,16 +26,14 @@ public class ImageService {
         return image;
     }
 
-    public void deleteImage(Integer id) throws Exception {
-        if(!imageRepository2.findById(id).isPresent())
-             throw new Exception("Image not found");
+    public void deleteImage(Integer id)  {
+
         imageRepository2.deleteById(id);
     }
 
-    public int countImagesInScreen(Integer id, String screenDimensions) throws Exception {
+    public int countImagesInScreen(Integer id, String screenDimensions)  {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-        if(!imageRepository2.findById(id).isPresent())
-            throw new Exception("Image not found");
+
         String [] screenArray = screenDimensions.split("X");
         Image image = imageRepository2.findById(id).get();
 

@@ -24,22 +24,18 @@ public class UserController {
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable int userId) {
         // delete user using deleteById
-        try{
-            userService.deleteUser(userId);
-        }catch (Exception e){
 
-        }
+            userService.deleteUser(userId);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Void> updateUser(@RequestParam Integer id, @RequestParam String password) {
         // update password of given user
-        try{
-            userService.updateUser(id,password);
-        }catch (Exception e){
 
-        }
+            userService.updateUser(id,password);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

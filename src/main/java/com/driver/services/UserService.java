@@ -19,17 +19,13 @@ public class UserService {
         return user;
     }
 
-    public void deleteUser(int userId) throws Exception {
-        if(!userRepository.findById(userId).isPresent()) {
-            throw new Exception("User not found");
-        }
+    public void deleteUser(int userId) {
+
         userRepository.deleteById(userId);
     }
 
-    public User updateUser(Integer userId, String password) throws Exception {
-        if(!userRepository.findById(userId).isPresent()) {
-            throw new Exception("User not found");
-        }
+    public User updateUser(Integer userId, String password) {
+
         User user = userRepository.findById(userId).get();
         user.setPassword(password);
         userRepository.save(user);
